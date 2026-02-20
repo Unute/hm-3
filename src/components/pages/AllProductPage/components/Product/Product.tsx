@@ -1,11 +1,20 @@
-import { useNavigate } from "react-router-dom"
-import Card from "@/components/UI/Card"
-import Loader from "@/components/UI/Loader"
-import s from './Product.module.scss'
-import type { ProductProps } from "./types"
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import Card from "@/components/UI/Card";
+import Loader from "@/components/UI/Loader";
+import Pagination from "./components/Pagination";
+import s from './Product.module.scss';
+import type { ProductProps } from "./types";
 
-const Product = ({ products, loading }: ProductProps) => {
-  const navigate = useNavigate()
+const CARDS_PER_PAGE = 9;
+
+const Product: React.FC<ProductProps> = ({ products, loading }) => {
+  const navigate = useNavigate();
+  const [page, setPage] = useState(1);
+  const totalPages = Math.ceil(products.length / CARDS_PER_PAGE);
+  const startIdx = (page - 1) * CARDS_PER_PAGE;
+  const endIdx = startIdx + CARDS_PER_PAGE;
+  const pageProducts = products.slice(startIdx, endIdx);
 
   return (
     <>
@@ -14,25 +23,28 @@ const Product = ({ products, loading }: ProductProps) => {
           <Loader size='l' />
         </div>
       ) : (
-        <div className={s.grid}>
-          {products.map((product) => {
-            const image = product.images?.[0].url
-            return (
-              <Card
-                key={product.documentId}
-                image={image}
-                captionSlot={product.productCategory?.title}
-                title={product.title}
-                subtitle={product.description}
-                contentSlot={`$${product.price}`}
-                onClick={() => navigate(`/product/${product.documentId}`)}
-              />
-            )
-          })}
-        </div>
+        <>
+          <div className={s.grid}>
+            {pageProducts.map((product) => {
+              const image = product.images?.[0].url;
+              return (
+                <Card
+                  key={product.documentId}
+                  image={image}
+                  captionSlot={product.productCategory?.title}
+                  title={product.title}
+                  subtitle={product.description}
+                  contentSlot={`$${product.price}`}
+                  onClick={() => navigate(`/product/${product.documentId}`)}
+                />
+              );
+            })}
+          </div>
+          <Pagination currentPage={page} totalPages={totalPages} onPageChange={setPage} />
+        </>
       )}
     </>
-  )
-}
+  );
+};
 
-export default Product
+export default Product;

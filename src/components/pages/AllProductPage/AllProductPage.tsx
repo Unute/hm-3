@@ -8,6 +8,7 @@ import { useGetAllProduct } from "./hook/useGetAllProduct"
 const AllProductPage = () => {
   const { total, products, loading } = useGetAllProduct()
 
+  
   return (
     <>
       <MainText />

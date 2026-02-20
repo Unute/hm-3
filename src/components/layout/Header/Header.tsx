@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import TextHeader from './components/TextHeader/TextHeader';
+import BurgerMenu from './components/BurgerMenu/BurgerMenu';
 import s from './Header.module.scss';
 
 const Header = () => {
@@ -10,11 +11,17 @@ const Header = () => {
         <img src="/svg/logo_text.svg" alt="Lalasia" />
       </Link>
 
-      <TextHeader />
-      
+      <div className={s.desktopNav}>
+        <TextHeader />
+      </div>
+
       <div className={s.icon}>
         <img src="/svg/bag.svg" alt="Корзина" />
         <img src="/svg/user.svg" alt="профиль" />
+      </div>
+
+      <div className={s.burgerWrapper}>
+        <BurgerMenu />
       </div>
     </header>
   );
