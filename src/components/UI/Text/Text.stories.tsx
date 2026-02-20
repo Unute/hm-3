@@ -1,6 +1,6 @@
-import React from 'react';
+// import React from 'react';
 
-import Text, { TextProps } from './Text';
+import Text, { type TextProps } from './Text';
 
 export default {
   title: 'Text',
