@@ -1,6 +1,6 @@
 import React from "react";
 import s from "./Pagination.module.scss";
-import ArrowRightIcon from "@/components/UI/icons/ArrowRight";
+// import ArrowRightIcon from "@/components/UI/icons/ArrowRight";
 
 interface PaginationProps {
   currentPage: number;
