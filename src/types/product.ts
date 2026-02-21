@@ -1,13 +1,9 @@
+import type { ProductCategory } from './productCategory';
+
 export type ProductImage = {
   id: number;
   documentId: string;
   url: string;
-};
-
-export type ProductCategory = {
-  id: number;
-  documentId: string;
-  title: string;
 };
 
 export type Product = {
