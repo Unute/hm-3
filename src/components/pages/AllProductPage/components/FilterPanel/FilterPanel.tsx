@@ -19,11 +19,13 @@ const FilterPanel = ({ total }: FilterPanelProps) => {
             //в будущем обработка поиска
           }}
         />
-        <Button children="Search" />
+        <Button>Search</Button>
       </div>
       <div className={s.text}>
-        <Text className={s.totalProducts} children="Total products" />
-        <Text color={"accent"} className={s.total} children={total ?? "—"} />
+        <Text className={s.totalProducts}>Total products</Text>
+        <Text color="accent" className={s.total}>
+          {total ?? "—"}
+        </Text>
       </div>
     </div>
   );

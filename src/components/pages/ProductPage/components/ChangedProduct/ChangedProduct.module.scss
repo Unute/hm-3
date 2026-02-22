@@ -4,6 +4,12 @@
   display: flex;
   gap: 3rem;
   align-items: flex-start;
+
+  @include respond(sm) {
+    flex-direction: column;
+    gap: 1.5rem;
+    align-items: stretch;
+  }
 }
 
 .image {
@@ -11,6 +17,12 @@
   max-width: 600px;
   border-radius: 4px;
   object-fit: cover;
+
+  @include respond(sm) {
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 1rem;
+  }
 }
 
 .info {

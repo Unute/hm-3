@@ -6,19 +6,25 @@ $breakpoint-md: 768px;
 $breakpoint-lg: 1024px;
 
 @mixin respond($breakpoint) {
-  @if $breakpoint == xsm {
+  @if $breakpoint ==xsm {
     @media (max-width: $breakpoint-xsm) {
       @content;
     }
-  } @else if $breakpoint == sm {
+  }
+
+  @else if $breakpoint ==sm {
     @media (max-width: $breakpoint-sm) {
       @content;
     }
-  } @else if $breakpoint == md {
+  }
+
+  @else if $breakpoint ==md {
     @media (max-width: $breakpoint-md) {
       @content;
     }
-  } @else if $breakpoint == lg {
+  }
+
+  @else if $breakpoint ==lg {
     @media (max-width: $breakpoint-lg) {
       @content;
     }
@@ -27,6 +33,7 @@ $breakpoint-lg: 1024px;
 
 
 :root {
+  --font-family: 'Roboto', sans-serif;
   --space-xxs: 8px;
   --space-xs: 12px;
   --space-s: 14px;
@@ -48,7 +55,7 @@ $breakpoint-lg: 1024px;
 
 html,
 body {
-  font-family: 'Roboto';
+  font-family: var(--font-family);
   margin: 0;
   padding: 0;
   min-height: 100vh;

@@ -1,4 +1,3 @@
-// import React from 'react'
 import s from "./MainText.module.scss";
 
 const MainText = () => {

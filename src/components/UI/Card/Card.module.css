@@ -20,18 +20,16 @@
 
 .card__text {
   padding: var(--space-xl) var(--space-xs) var(--space-xl);
-  font-family: 'Roboto';
+  font-family: var(--font-family);
   background-color: #FFFFFF;
 }
 
 .card__caption {
   margin-bottom: var(--space-xxs);
-  font-family: 'Roboto';
 }
 
 .card__title {
   margin-bottom: var(--space-xxs);
-  font-family: 'Roboto';
 }
 
 .card__content-action {

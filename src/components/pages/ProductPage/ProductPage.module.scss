@@ -16,29 +16,13 @@
   color: var(--text-primary);
   align-self: flex-start;
   padding: 0;
-  font-family: 'Roboto';
+  font-family: var(--font-family);
   font-weight: 400;
 
   &:hover {
     color: var(--brand);
   }
 }
-
-.image {
-  width: 50%;
-  max-width: 500px;
-  border-radius: 4px;
-  object-fit: cover;
-}
-
-.info {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  flex: 1;
-}
-
-
 
 .loader {
   display: flex;
@@ -54,7 +38,7 @@
   align-items: center;
   width: 100%;
   padding: 4rem 0;
-  font-family: 'Roboto';
+  font-family: var(--font-family);
   font-size: 1.25rem;
   color: var(--text-secondary);
 }
