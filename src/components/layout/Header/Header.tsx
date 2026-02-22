@@ -1,7 +1,8 @@
-import { Link } from 'react-router-dom';
-import TextHeader from './components/TextHeader/TextHeader';
-import BurgerMenu from './components/BurgerMenu/BurgerMenu';
-import s from './Header.module.scss';
+import { Link } from "react-router-dom";
+
+import s from "./Header.module.scss";
+import BurgerMenu from "./components/BurgerMenu/BurgerMenu";
+import TextHeader from "./components/TextHeader/TextHeader";
 
 const Header = () => {
   return (

@@ -1,6 +1,8 @@
-import { useState } from 'react';
-import TextHeader from '../TextHeader/TextHeader';
-import s from './BurgerMenu.module.scss';
+import { useState } from "react";
+
+import TextHeader from "../TextHeader/TextHeader";
+
+import s from "./BurgerMenu.module.scss";
 
 const BurgerMenu = () => {
   const [open, setOpen] = useState(false);
@@ -8,7 +10,7 @@ const BurgerMenu = () => {
   return (
     <>
       <button
-        className={`${s.burgerBtn} ${open ? s.open : ''}`}
+        className={`${s.burgerBtn} ${open ? s.open : ""}`}
         onClick={() => setOpen(!open)}
         aria-label="Открыть меню"
       >

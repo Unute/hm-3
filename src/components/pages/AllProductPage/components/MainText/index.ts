@@ -1,1 +1,1 @@
-export {default} from './MainText'
+export { default } from "./MainText";

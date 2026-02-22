@@ -1,14 +1,19 @@
 import React from "react";
+
 import s from "./Pagination.module.scss";
 // import ArrowRightIcon from "@/components/UI/icons/ArrowRight";
 
-interface PaginationProps {
+type PaginationProps = {
   currentPage: number;
   totalPages: number;
   onPageChange: (page: number) => void;
-}
+};
 
-const Pagination: React.FC<PaginationProps> = ({ currentPage, totalPages, onPageChange }) => {
+const Pagination: React.FC<PaginationProps> = ({
+  currentPage,
+  totalPages,
+  onPageChange,
+}) => {
   if (totalPages <= 1) return null;
 
   const pages = [];

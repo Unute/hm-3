@@ -1,10 +1,12 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+
+import s from "./Product.module.scss";
+import Pagination from "./components/Pagination";
+import type { ProductProps } from "./types";
+
 import Card from "@/components/UI/Card";
 import Loader from "@/components/UI/Loader";
-import Pagination from "./components/Pagination";
-import s from './Product.module.scss';
-import type { ProductProps } from "./types";
 
 const CARDS_PER_PAGE = 9;
 
@@ -20,13 +22,13 @@ const Product: React.FC<ProductProps> = ({ products, loading }) => {
     <>
       {loading ? (
         <div className={s.loader}>
-          <Loader size='l' />
+          <Loader size="l" />
         </div>
       ) : (
         <>
           <div className={s.grid}>
             {pageProducts.map((product) => {
-              const image = product.images?.[0].url;
+              const image: string = product.images[0].url;
               return (
                 <Card
                   key={product.documentId}
@@ -40,7 +42,11 @@ const Product: React.FC<ProductProps> = ({ products, loading }) => {
               );
             })}
           </div>
-          <Pagination currentPage={page} totalPages={totalPages} onPageChange={setPage} />
+          <Pagination
+            currentPage={page}
+            totalPages={totalPages}
+            onPageChange={setPage}
+          />
         </>
       )}
     </>

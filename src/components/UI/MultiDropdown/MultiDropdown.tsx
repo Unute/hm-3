@@ -1,7 +1,9 @@
-import React, { useState, useRef, useEffect } from 'react';
-import Input from '../Input';
-import ArrowDownIcon from '../icons/ArrowDownIcon';
-import styles from './MultiDropdown.module.css';
+import React, { useState, useRef, useEffect } from "react";
+
+import Input from "../Input";
+import ArrowDownIcon from "../icons/ArrowDownIcon";
+
+import styles from "./MultiDropdown.module.css";
 
 export type Option = {
   /** Ключ варианта, используется для отправки на бек/использования в коде */
@@ -31,15 +33,13 @@ const MultiDropdown: React.FC<MultiDropdownProps> = ({
   value,
   onChange,
   disabled,
-  getTitle
+  getTitle,
 }) => {
-
-  const [filter, setFilter] = useState('');
+  const [filter, setFilter] = useState("");
   const [isOpen, setIsOpen] = useState(false);
 
-  const filteredOptions = options.filter(
-    options => options.value.toLowerCase()
-      .includes(filter.toLowerCase())
+  const filteredOptions = options.filter((options) =>
+    options.value.toLowerCase().includes(filter.toLowerCase()),
   );
 
   const rootRef = useRef<HTMLDivElement>(null);
@@ -49,24 +49,21 @@ const MultiDropdown: React.FC<MultiDropdownProps> = ({
       if (rootRef.current && !rootRef.current.contains(e.target as Node)) {
         setIsOpen(false);
       }
-    }
-    document.addEventListener('mousedown', handleClickOutside);
+    };
+    document.addEventListener("mousedown", handleClickOutside);
     return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-    }
-
-  }, [])
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
   const [isFocused, setIsFocused] = useState(false);
 
-
   return (
     <div ref={rootRef} className={className}>
-
       <Input
         placeholder={getTitle(value)}
         disabled={disabled}
-        value={isFocused ? filter : (value.length > 0 ? getTitle(value) : '')}
+        value={isFocused ? filter : value.length > 0 ? getTitle(value) : ""}
         onFocus={() => {
           setIsFocused(true);
           setIsOpen(true);
@@ -80,81 +77,34 @@ const MultiDropdown: React.FC<MultiDropdownProps> = ({
           setIsOpen(true);
           setFilter(e);
         }}
-        afterSlot={<ArrowDownIcon color='secondary' />}
-        className={styles['input__down']}
+        afterSlot={<ArrowDownIcon color="secondary" />}
+        className={styles["input__down"]}
       />
 
-      <div className={styles['block__option']}>
-
-        {isOpen && !disabled && filteredOptions.map(options => {
-          const alreadySelected = value.some(v => v.key === options.key);
-          return (
-            <div
-              className={`${styles.option}${alreadySelected ? ' ' + styles['option--selected'] : ''}`}
-              key={options.key}
-              onClick={() => {
-                if (alreadySelected) {
-                  onChange(value.filter(v => v.key !== options.key));
-                } else {
-                  onChange([...value, options]);
-                }
-              }}
-            >
-              {options.value}
-            </div>
-          );
-        })}
+      <div className={styles["block__option"]}>
+        {isOpen &&
+          !disabled &&
+          filteredOptions.map((options) => {
+            const alreadySelected = value.some((v) => v.key === options.key);
+            return (
+              <div
+                className={`${styles.option}${alreadySelected ? " " + styles["option--selected"] : ""}`}
+                key={options.key}
+                onClick={() => {
+                  if (alreadySelected) {
+                    onChange(value.filter((v) => v.key !== options.key));
+                  } else {
+                    onChange([...value, options]);
+                  }
+                }}
+              >
+                {options.value}
+              </div>
+            );
+          })}
       </div>
-
     </div>
-  )
+  );
 };
 
 export default MultiDropdown;
-
-
-// 1. Должен использовать компонент `Input`
-// 1. При вводе в поле, опции должны фильтроваться
-// 1. Опции должны пропадать из DOM-дерева при клике вне поля
-
-// ```typescript
-// type Option = {
-//   /** Ключ варианта, используется для отправки на бек/использования в коде */
-//   key: string;
-//   /** Значение варианта, отображается пользователю */
-//   value: string;
-// };
-
-
-
-// **Примеры использования:**
-
-// ```typescript
-// // Простой фильтр
-// <MultiDropdown
-//     options={[
-//         { key: 'msk', value: 'Москва' },
-//         { key: 'spb', value: 'Санкт-Петербург' },
-//         { key: 'ekb', value: 'Екатеринбург' }
-//     ]}
-//     value={[{ key: 'msk', value: 'Москва' }]}
-//     onChange={({ key, value }: Option) => console.log('Выбрано:', key, value)}
-//     getTitle={() => ''}
-// />
-
-// // Заблокированный фильтр
-// <MultiDropdown
-//     disabled
-//     options={someOptions}
-//     value={currentValue}
-//     onChange={onChange}
-//     getTitle={(values: Option[]) => values.length === 0 ? 'Выберите город' : `Выбрано: ${values.length}`}
-// />
-
-// // Фильтр, отображающий количество выбранных вариантов
-// <MultiDropdown
-//     options={someOptions}
-//     value={currentValue}
-//     onChange={onChange}
-//     getTitle={(values: Option[]) => `Выбрано: ${values.length}`}
-// />

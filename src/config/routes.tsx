@@ -1,7 +1,8 @@
+import type { RouteObject } from "react-router-dom";
+
 import App from "@/App";
 import AllProductPage from "@/components/pages/AllProductPage";
 import ProductPage from "@/components/pages/ProductPage/ProductPage";
-import type { RouteObject } from "react-router-dom";
 
 const ErrorBoundary = () => <div>Произошла ошибка приложения</div>;
 
