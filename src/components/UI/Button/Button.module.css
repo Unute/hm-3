@@ -11,7 +11,7 @@
   padding: 14px 20px;
 }
 
-.button--disabled {
+.disabled {
   background-color: #D9D9D9;
 }
 
@@ -20,5 +20,13 @@
 }
 
 .button:hover:not(.button--disabled):not(.button--loading) {
+  background-color: #86AAA7;
+}
+
+.button:active:not(.disabled):not(.loading) {
+  background-color: #487773;
+}
+
+.button:hover:not(.disabled):not(.loading) {
   background-color: #86AAA7;
 }

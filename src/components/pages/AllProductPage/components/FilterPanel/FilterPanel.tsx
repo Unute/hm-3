@@ -16,7 +16,7 @@ const FilterPanel = ({ total }: FilterPanelProps) => {
           className={s.input}
           value="Search product"
           onChange={() => {
-            //в будущем обработка поиска
+            //TODO: сделать обработку поиска
           }}
         />
         <Button>Search</Button>
